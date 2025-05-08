@@ -5,9 +5,10 @@ import java.util.List;
 
 
 public interface ProduitsService {
+    List<Produits> getAllProduits();
     String addProduits (Produits produits);
-    String updateProduits (Produits produits);
+    Produits updateProduits (Produits produits);
     String deleteProduits (Long id);
     Produits getProduits (Long id);
-    List<Produits> getAllProduits();
+
 }

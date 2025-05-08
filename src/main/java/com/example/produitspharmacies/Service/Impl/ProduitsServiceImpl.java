@@ -4,6 +4,7 @@ import com.example.produitspharmacies.Repositories.ProduitsRepositories;
 import com.example.produitspharmacies.Service.ProduitsService;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,6 +14,8 @@ import java.util.List;
 @NoArgsConstructor
 @Service
 public class ProduitsServiceImpl implements ProduitsService {
+
+    @Autowired
     private ProduitsRepositories produitsRepositories;
 
     @Override
@@ -22,25 +25,27 @@ public class ProduitsServiceImpl implements ProduitsService {
     }
 
     @Override
-    public String updateProduits(Produits produits) {
-
-        return "";
+    public Produits updateProduits(Produits produits) {
+        return produitsRepositories.save(produits);
     }
+
 
     @Override
     public String deleteProduits(Long id) {
-
-        return "";
+        produitsRepositories.deleteById(id);
+        return "Produits deleted succefully";
     }
 
     @Override
     public Produits getProduits(Long id) {
+
         return  produitsRepositories.findById(id).orElse(null);
     }
 
     @Override
     public List<Produits> getAllProduits() {
-        return List.of();
+
+        return produitsRepositories.findAll();
     }
 
 

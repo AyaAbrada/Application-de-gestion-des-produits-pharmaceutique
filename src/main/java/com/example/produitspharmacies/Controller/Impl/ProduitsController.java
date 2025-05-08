@@ -1,21 +1,24 @@
 package com.example.produitspharmacies.Controller.Impl;
 import com.example.produitspharmacies.Entities.Produits;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 public interface ProduitsController {
-    @PostMapping()
-    String addProduits(Produits produits);
+    @PostMapping
+    String addProduits(@RequestBody  Produits produits);
 
     @GetMapping("/{id}")
-    String retrieveProduits(@PathVariable Long id);
+    Produits retrieveProduits(@PathVariable Long id);
 
-    @GetMapping()
+    @GetMapping
     List<Produits> retrieveAllProduits();
 
+    @DeleteMapping("/{id}")
+    String removeProduits( @PathVariable Long id);
 
+
+   @PutMapping()
+   Produits updateProduits(@RequestBody Produits produits);
 
 }
